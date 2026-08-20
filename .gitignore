@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.env
+cookies.txt
+cookie.json
