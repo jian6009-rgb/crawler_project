@@ -5,3 +5,4 @@ __pycache__/
 .env
 cookies.txt
 cookie.json
+.auth/
