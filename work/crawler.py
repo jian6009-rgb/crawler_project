@@ -6,11 +6,17 @@ import json
 import re
 
 #需要的信息总结（暂时是榜单1）后面要遍历榜单
-SONG_LIST_URL = ("https://www.kugou.com/yy/rank/home/1-8888.html?from=rank")
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
 AUTH_PATH = Path(".auth/kugou_state.json")
 HEADERS = {"User-Agent": USER_AGENT}
 DATA_PATH = Path("data/songs.json")
+
+def create_urllist(head,tail):
+    url_list = []
+    for page_num in range(head,tail+1):
+        url = ("https://www.kugou.com/yy/rank/home/" f"{page_num}-8888.html?from=rank")
+        url_list.append(url)
+    return url_list
 
 
 def getrank_songs(rank_url): #复制的crawler.ipynb 在那里有原文档可以复制
@@ -69,7 +75,9 @@ def savesong(songs):
         json.dump(songs,savefile,ensure_ascii=False,indent=2)
 
 def playwrit():  #复制的crawler.ipynb 在那里有原文档可以复制
-    songs = getrank_songs(SONG_LIST_URL)
+    songs = []
+    for url in create_urllist(1,3):
+        songs.extend(getrank_songs(url))
 
     detail_songs = []
     with sync_playwright() as playwright: 
@@ -86,6 +94,7 @@ def playwrit():  #复制的crawler.ipynb 在那里有原文档可以复制
                 print("good")
             except Exception as error:
                 song["status"] = "failed"
+                song["error"] = str(error)
                 detail_songs.append(song)
                 print(error)
             savesong(detail_songs)
