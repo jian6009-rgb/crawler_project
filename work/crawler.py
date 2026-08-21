@@ -46,7 +46,7 @@ def getsong_detail(page, song):   #复制的crawler.ipynb 在那里有原文档�
     )
     cover_url = page.locator(".albumImg img").get_attribute("src")
     rawlyrics = page.locator(".songWordContent").inner_text().strip()
-    lyrics = re.sub(r"\A.*?』\s*","",rawlyrics,flags=re.DOTALL)
+    lyrics = re.sub(r"\A.*?』\s*","",rawlyrics,flags=re.DOTALL).strip()
     singer_tags = page.locator(".songDetail .singerName a") 
     singer_names = []#用列表是因为怕有多位歌手
     singer_urls = []
@@ -61,30 +61,36 @@ def getsong_detail(page, song):   #复制的crawler.ipynb 在那里有原文档�
     song["cover_url"] = cover_url
     song["lyrics"] = lyrics
     song["detail_singer_names"] = singer_names
-    song["singer_url"] = singer_urls
+    song["singer_urls"] = singer_urls
     return song
 
+def savesong(songs):
+    with DATA_PATH.open("w",encoding="utf-8") as savefile:
+        json.dump(songs,savefile,ensure_ascii=False,indent=2)
 
 def playwrit():  #复制的crawler.ipynb 在那里有原文档可以复制
     songs = getrank_songs(SONG_LIST_URL)
 
-    test_songs = songs[:10]
     detail_songs = []
     with sync_playwright() as playwright: 
         browser = playwright.chromium.launch(headless=True)
-        context = browser.new_context(user_agent=USER_AGENT , storage_state=str(AUTH_PATH))
+        context = browser.new_context(user_agent=USER_AGENT ,storage_state=str(AUTH_PATH))
         page = context.new_page()
 
-        for idx, song in enumerate(test_songs, start = 1):
+        for idx, song in enumerate(songs, start = 1):
             print(f"{idx}:{song['song_name']}")
-            detail_song = getsong_detail(page, song)
-            detail_songs.append(detail_song)
+            try:
+                detail_song = getsong_detail(page, song)
+                detail_song["status"] = "success"
+                detail_songs.append(detail_song)
+                print("good")
+            except Exception as error:
+                song["status"] = "failed"
+                detail_songs.append(song)
+                print(error)
+            savesong(detail_songs)
         browser.close()
     return detail_songs
 
 songs = playwrit()
-
-with DATA_PATH.open("w",encoding="utf-8") as savefile:
-    json.dump(songs,savefile,ensure_ascii=False,indent=2)
-
 print("ok")
