@@ -2,12 +2,15 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
+import json
+import re
 
 #需要的信息总结（暂时是榜单1）后面要遍历榜单
 SONG_LIST_URL = ("https://www.kugou.com/yy/rank/home/1-8888.html?from=rank")
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
 AUTH_PATH = Path(".auth/kugou_state.json")
 HEADERS = {"User-Agent": USER_AGENT}
+DATA_PATH = Path("data/songs.json")
 
 
 def getrank_songs(rank_url): #复制的crawler.ipynb 在那里有原文档可以复制
@@ -42,31 +45,46 @@ def getsong_detail(page, song):   #复制的crawler.ipynb 在那里有原文档�
         timeout=15000
     )
     cover_url = page.locator(".albumImg img").get_attribute("src")
-    lyrics = page.locator(".songWordContent").inner_text().strip()
-    singer_tag = page.locator(".songDetail .singerName a")
-    singer_url = singer_tag.get_attribute("href")
+    rawlyrics = page.locator(".songWordContent").inner_text().strip()
+    lyrics = re.sub(r"\A.*?』\s*","",rawlyrics,flags=re.DOTALL)
+    singer_tags = page.locator(".songDetail .singerName a") 
+    singer_names = []#用列表是因为怕有多位歌手
+    singer_urls = []
+    for index in range(singer_tags.count()):
+        singer_tag = singer_tags.nth(index)
+        singer_name = singer_tag.inner_text().strip()
+        singer_url = singer_tag.get_attribute("href")
+        singer_names.append(singer_name)
+        singer_urls.append(singer_url)
+
+    
     song["cover_url"] = cover_url
     song["lyrics"] = lyrics
-    song["singer_url"] = singer_url
+    song["detail_singer_names"] = singer_names
+    song["singer_url"] = singer_urls
     return song
 
 
 def playwrit():  #复制的crawler.ipynb 在那里有原文档可以复制
     songs = getrank_songs(SONG_LIST_URL)
+
+    test_songs = songs[:10]
+    detail_songs = []
     with sync_playwright() as playwright: 
         browser = playwright.chromium.launch(headless=True)
         context = browser.new_context(user_agent=USER_AGENT , storage_state=str(AUTH_PATH))
         page = context.new_page()
-        firstsong = getsong_detail(page, songs[1])
-        browser.close()
-    return firstsong
 
-song = playwrit()
-#testing
-print(song["song_name"])
-print(song["singer_name"])
-print(song["song_url"])
-print(song["cover_url"])
-print(song["singer_url"])
-print("歌词:")
-print(song["lyrics"])
+        for idx, song in enumerate(test_songs, start = 1):
+            print(f"{idx}:{song['song_name']}")
+            detail_song = getsong_detail(page, song)
+            detail_songs.append(detail_song)
+        browser.close()
+    return detail_songs
+
+songs = playwrit()
+
+with DATA_PATH.open("w",encoding="utf-8") as savefile:
+    json.dump(songs,savefile,ensure_ascii=False,indent=2)
+
+print("ok")
