@@ -8,9 +8,10 @@
     "detail_singer_names": [
       "万海东"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/579MK5116281A/"
-    ]
+    ],
+    "status": "success"
   },
   {
     "song_name": "你有没有真的爱过我",
@@ -21,9 +22,10 @@
     "detail_singer_names": [
       "阿图表妹"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/KAM6BK3C0648C4/"
-    ]
+    ],
+    "status": "success"
   },
   {
     "song_name": "甲乙丙丁 (你我怎么两清)",
@@ -34,9 +36,10 @@
     "detail_singer_names": [
       "李佳薇"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/2HUIKCC2C94C7/"
-    ]
+    ],
+    "status": "success"
   },
   {
     "song_name": "闭目入神",
@@ -47,24 +50,26 @@
     "detail_singer_names": [
       "郑中基"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/3EKKBB6CF1CC/"
-    ]
+    ],
+    "status": "success"
   },
   {
     "song_name": "如果累了就回故乡 (少年版)",
     "singer_name": "酷酷里、面妹孔佳奇",
     "song_url": "https://www.kugou.com/mixsong/foyfacf8.html",
-    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260813/20260813122756123080.jpg",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260813/20260813122051445130.jpg",
     "lyrics": "如果累了就回故乡（少年版）\n\n演唱：酷酷里/面妹孔佳奇\n\n作词：卅卅\n\n作曲：卅卅\n\n编曲：simon\n\n混音：庄小鑫\n\n制作：卅卅\n\n推广：小酷/楚来/星光音乐/钟鑫圆\n\n统筹：未子夫/木子非/卅卅\n\n监制：王和彬/马婧文\n\n出品人：杨文杰/王冬冬\n\nOP：火乐无限\n\nSP：腾讯音乐人·阿福工作室\n\n小村里人不多\n\n个个都认识我\n\n口袋里钱不多\n\n快乐却有很多\n\n村头我遛个弯儿\n\n到哪都是客\n\n不知道烦恼是什么\n\n长大了由不得\n\n在人海漂泊\n\n想要得变多了\n\n快乐却变少了\n\n村头我遛个弯儿\n\n却有人问我\n\n问我是从哪里长大的？\n\n如果累了就回故乡\n\n去山野里走一趟\n\n让那红彤彤的夕阳伴着蝉儿在歌唱\n\n有些话讲一讲\n\n有些人望一望\n\n望着那月光一点点变亮\n\n如果累了就放一放\n\n去记忆里走一趟\n\n听听那年的笑声飘得比炊烟还要长\n\n有些话讲一讲\n\n有些人望一望\n\n望着那月光一点点变凉\n\n长大了由不得\n\n在人海漂泊\n\n想要得变多了\n\n快乐却变少了\n\n村头我遛个弯儿\n\n却有人问我\n\n问我是从哪里长大的？\n\n如果累了就回故乡\n\n去山野里走一趟\n\n让那红彤彤的夕阳伴着蝉儿在歌唱\n\n有些话讲一讲\n\n有些人望一望\n\n望着那月光一点点变亮\n\n如果累了就放一放\n\n去记忆里走一趟\n\n听听那年的笑声飘得比炊烟还要长\n\n有些话讲一讲\n\n有些人望一望\n\n望着那月光一点点变凉\n\n如果累了就回故乡\n\n去山野里走一趟\n\n让那红彤彤的夕阳伴着蝉儿在歌唱\n\n有些话讲一讲\n\n有些人望一望\n\n望着那月光一点点变亮\n\n如果累了就放一放\n\n去记忆里走一趟\n\n听听那年的笑声飘得比炊烟还要长\n\n有些话讲一讲\n\n有些人望一望\n\n望着那月光一点点变凉",
     "detail_singer_names": [
       "酷酷里",
       "面妹孔佳奇"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/GB6C8K03E40399/",
       "https://www.kugou.com/singer/info/7Q579K3D92FE10/"
-    ]
+    ],
+    "status": "success"
   },
   {
     "song_name": "我不难过",
@@ -75,9 +80,10 @@
     "detail_singer_names": [
       "孙燕姿"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/5M2K44430864/"
-    ]
+    ],
+    "status": "success"
   },
   {
     "song_name": "吹吹山顶的风",
@@ -88,9 +94,10 @@
     "detail_singer_names": [
       "巴扎黑"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/LUD7KC3AD7158/"
-    ]
+    ],
+    "status": "success"
   },
   {
     "song_name": "明天过后",
@@ -101,9 +108,10 @@
     "detail_singer_names": [
       "张杰"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/3EJK4CAC6B0B/"
-    ]
+    ],
+    "status": "success"
   },
   {
     "song_name": "冻结",
@@ -114,9 +122,10 @@
     "detail_singer_names": [
       "林俊杰"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/1H6KDA30029E/"
-    ]
+    ],
+    "status": "success"
   },
   {
     "song_name": "差一步",
@@ -127,8 +136,179 @@
     "detail_singer_names": [
       "大壮"
     ],
-    "singer_url": [
+    "singer_urls": [
       "https://www.kugou.com/singer/info/HG7AK6D227A40/"
-    ]
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "回到小村落 (听着蛐蛐唱着歌)",
+    "singer_name": "宋盐球",
+    "song_url": "https://www.kugou.com/mixsong/fhm04hb0.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260721/20260721210427572422.jpg",
+    "lyrics": "回到小村落 (听着蛐蛐唱着歌) - 宋盐球\n\n作词：大涵\n\n作曲：大涵\n\n编曲：阿蓝\n\n吉他：王兴旺\n\n和声：小宛\n\n混音/母带：徐炜诚@G.E Music\n\n制作人：杨希杰\n\n统筹：康喻轩\n\n监制：T.G.S@永恒Eternal Music Studio\n\n推广策划：巩傲/孙晨阳@爱听推广组\n\n营销推广：沐风有声/楚来/凯茜\n\n词曲团队：爱听音乐\n\n艺人统筹：巩傲\n\n出品人：任永恒\n\nOP：爱听音乐\n\n「未经著作权人许可. 不得翻唱翻录或使用」\n\n在城市的角落一个人的漂泊\n\n把青春理想丢给现实慢慢蹉跎\n\n厌倦了这样凑合的过\n\n也不想再看谁的脸色\n\n我骑上小摩托\n\n悠哉悠哉哼着歌\n\n去远方的辽阔\n\n看未知的景色\n\n见过花开就好\n\n何必在意结果\n\n谁也别来掌管我的生活\n\n想回到小村落\n\n听着蛐蛐唱着歌\n\n躺在田边累了就接一瓢井水喝\n\n大树下坐一坐\n\n再抓一把瓜子嗑\n\n听老人把从前故事慢慢说\n\n想回到小村落\n\n爬上山坡摘云朵\n\n闲观一年四季细品人间的烟火\n\n想快乐就快乐\n\n不用听谁怎么说\n\n谁规定人生要怎样的过\n\n在城市的角落一个人的漂泊\n\n把青春理想丢给现实慢慢蹉跎\n\n厌倦了这样凑合的过\n\n也不想再看谁的脸色\n\n我骑上小摩托\n\n悠哉悠哉哼着歌\n\n去远方的辽阔\n\n看未知的景色\n\n见过花开就好\n\n何必在意结果\n\n谁也别来掌管我的生活\n\n想回到小村落\n\n听着蛐蛐唱着歌\n\n躺在田边累了就接一瓢井水喝\n\n大树下坐一坐\n\n再抓一把瓜子嗑\n\n听老人把从前故事慢慢说\n\n想回到小村落\n\n爬上山坡摘云朵\n\n闲观一年四季细品人间的烟火\n\n想快乐就快乐\n\n不用听谁怎么说\n\n谁规定人生要怎样的过\n\n想回到小村落\n\n听着蛐蛐唱着歌\n\n躺在田边累了就接一瓢井水喝\n\n大树下坐一坐\n\n再抓一把瓜子嗑\n\n听老人把从前故事慢慢说",
+    "detail_singer_names": [
+      "宋盐球"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/B5KT3K52DE0109/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "失眠",
+    "singer_name": "Suki刘舒妤",
+    "song_url": "https://www.kugou.com/mixsong/hhsafbd.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260415/20260415190622329436.jpg",
+    "lyrics": "失眠 - Suki刘舒妤\n\n词：吴易纬\n\n曲：陈威全\n\n制作：陈威全\n\n出品：五十环音乐Straight50 x First Love\n\n这个失眠夜 想不起你是谁\n\n品尝过爱情的香甜\n\n我舍不得喝水\n\n人总是疯癫 不惜牺牲一切\n\n却只为了换一次\n\n拥抱爱的机会\n\n被你牵着的手是不可能的画面\n\n拥有你的时间已经不可能倒回\n\n爱情像纠结的毛线\n\n你说爱我太过浪费\n\n太过狼狈 太过愚昧\n\n都是我一厢情愿\n\n尝试过爱恋 尝试过缠绵\n\n最后还是失眠\n\n脆弱无助的黑夜 都是你抽的烟\n\n我尝试过亏欠 尝试过敷衍\n\n最后还是失眠\n\n忍住怀念 却清醒过 一整夜\n\n被你牵着的手是不可能的画面\n\n拥有你的时间已经不可能倒回\n\n爱情像纠结的毛线\n\n你说爱我太过浪费\n\n太过狼狈 太过愚昧\n\n都是我一厢情愿\n\n尝试过爱恋 尝试过缠绵\n\n最后还是失眠\n\n脆弱无助的黑夜\n\n都是你抽的烟\n\n我尝试过亏欠 尝试过敷衍\n\n最后还是失眠\n\n忍住怀念 却清醒过 一整夜\n\n我尝试过爱恋 尝试过缠绵\n\n最后还是失眠\n\n眼泪填满的黑夜 是戒不掉的烟\n\n我尝试过亏欠 尝试过敷衍\n\n最后还是失眠\n\n忍住后悔 却忍不住 又想念\n\n忍住怀念 却清醒过 一整夜",
+    "detail_singer_names": [
+      "Suki刘舒妤"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/2UGJK471232E7/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "像我这样爱你的人",
+    "singer_name": "落日微醺本薰、张多金",
+    "song_url": "https://www.kugou.com/mixsong/fjo0rce5.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260729/20260729185424240711.jpg",
+    "lyrics": "演唱: 落日微醺本薰/张多金\n\n作词: 王飞\n\n作曲: 周厚松\n\n编曲: 叶展扬\n\n混音: 叶展扬\n\n统筹/企划: 果子/希云/小北\n\n推广策划: 熊歆宇\n\n监制: 果子\n\nOP: 看见文娱X 喜听乐见\n\n假如我们 都不快乐\n\n你也沉默我也难过\n\n到底是生活的过错\n\n还是我们本来就不适合\n\n没想过会是这样的结果\n\n分开反倒成了解脱\n\n挽留的话\n\n谁都没说\n\n从此以后也不会再联络\n\n你再也遇不到 像我这样爱你的人\n\n我再也不会爱你那样\n\n去爱别人\n\n很遗憾只能陪你走一程\n\n不是一生\n\n但能给你的我都给了再无悔恨\n\n你再也遇不到 像我这样爱你的人\n\n我也很难再对别人也如此的情深\n\n哪怕所有付出在你眼里不值一文\n\n我也只好认了\n\n可能我们就这点\n\n缘分\n\n假如我们 都不快乐\n\n你也沉默我也难过\n\n到底是生活的过错\n\n还是我们本来就不适合\n\n没想过会是这样的结果\n\n分开反倒成了解脱\n\n挽留的话\n\n谁都没说\n\n从此以后也不会再联络\n\n你再也遇不到 像我这样爱你的人\n\n我再也不会爱你那样\n\n去爱别人\n\n很遗憾只能陪你走一程\n\n不是一生\n\n但能给你的我都给了再无悔恨\n\n你再也遇不到 像我这样爱你的人\n\n我也很难再对别人也如此的情深\n\n哪怕所有付出在你眼里不值一文\n\n我也只好认了\n\n可能我们就这点\n\n缘分\n\n你再也遇不到 像我这样爱你的人\n\n我再也不会爱你那样\n\n去爱别人\n\n很遗憾只能陪你走一程\n\n不是一生\n\n但能给你的我都给了再无悔恨\n\n你再也遇不到 像我这样爱你的人\n\n我也很难再对别人也如此的情深\n\n哪怕所有付出在你眼里不值一文\n\n我也只好认了\n\n可能我们就这点\n\n缘分",
+    "detail_singer_names": [
+      "落日微醺本薰",
+      "张多金"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/KSC42KAE656DE4/",
+      "https://www.kugou.com/singer/info/KQSM5K196EB5A4/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "人生路漫漫",
+    "singer_name": "白小白",
+    "song_url": "https://www.kugou.com/mixsong/e5ibv115.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260326/20260326182610525334.jpg",
+    "lyrics": "人生路漫漫 - 白小白\n\n词：徐重来\n\n曲：林华勇\n\n编曲：陆泰名\n\n制作人：林华勇\n\n吉他：陆泰名\n\n贝斯：楚小波\n\n监制：白小白/苗羽\n\n混音：赵彬彬\n\n母带：赵彬彬\n\nOP：风靡时代\n\n未经许可，不得翻唱或使用\n\n我漂泊的船能不能靠在你的岸\n\n没出口的话你懂我一定是喜欢\n\n这世界太大到处是人海与人山\n\n遇见了你我就不遗憾\n\n你撑起的伞能不能借给我一半\n\n什么是浪漫你懂我其实很简单\n\n人生路漫漫搀扶在岁月的荏苒\n\n那时我们已白发斑斑\n\n你别见怪 我不会先离开\n\n就算你呀 忘了我的存在\n\n你余生未来 可以都 交给我保管\n\n有你在身边 我想我 会一直勇敢\n\n你若回身看 长镜头 越拉越缓慢\n\n幸福是你 一幕幕陪伴\n\n你撑起的伞能不能借给我一半\n\n什么是浪漫你懂我其实很简单\n\n人生路漫漫搀扶在岁月的荏苒\n\n那时我们已白发斑斑\n\n你别见怪 我不会先离开\n\n就算你呀 忘了我的存在\n\n你余生未来 可以都 交给我保管\n\n有你在身边 我想我 会一直勇敢\n\n你若回身看 长镜头 越拉越缓慢\n\n幸福是你 一幕幕陪伴\n\n幸福是你 一幕幕陪伴",
+    "detail_singer_names": [
+      "白小白"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/5LFFK5254B4C7/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "樱花草",
+    "singer_name": "Sweety",
+    "song_url": "https://www.kugou.com/mixsong/g68v969.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260610/20260610172641662788.jpg",
+    "lyrics": "樱花草 - Sweety\n\n词：李天龙\n\n曲：李天龙\n\n编曲：许恒瑞\n\n晚风吹动着竹林\n\n月光拉长了身影\n\n萤火虫 一闪闪\n\n满山飞舞的钱币\n\n天上银河在发光\n\n地上风铃来歌唱\n\n织女星 在远方\n\n古老浪漫的神话\n\n流水 走过\n\n就像四季的变换\n\n幸福 在蔓延\n\n爱你永恒不孤单\n\n恋人手中樱花草\n\n春彩漫步的微笑\n\n种下了 一朵朵\n\n青春璀璨的年少\n\n恋人怀中樱花草\n\n听见胸膛心在跳\n\n偷偷的 在思念\n\n那是我们相爱的记号\n\nLa la la la la la la\n\nLa la la la la\n\nLa la la la la la la la\n\n远方钟声再响起\n\n蛙鸣唱起了摇篮曲\n\n白沙滩 月弯弯\n\n爱你香甜的梦里\n\n天上银河在发光\n\n地上风铃来歌唱\n\n织女星 在远方\n\n许下爱恋的愿望\n\n流水 走过\n\n就像四季的变换\n\n幸福 在蔓延\n\n爱你永恒不孤单\n\n恋人手中樱花草\n\n春彩漫步的微笑\n\n种下了 一朵朵\n\n青春璀璨的年少\n\n恋人怀中樱花草\n\n听见胸膛心在跳\n\n偷偷的 在思念\n\n那是我们相爱的味道\n\nLa la la la la la la\n\nLa la la la la\n\nLa la la la la\n\nLa la la la la la la\n\nLa la la la la\n\nLa la la la la la la la\n\n恋人手中樱花草\n\n春彩漫步的微笑\n\n种下了 一朵朵\n\n青春璀璨的年少\n\n恋人怀中樱花草\n\n听见胸膛心在跳\n\n偷偷的 在思念\n\n那是我们相爱的\n\n恋人手中樱花草\n\n春彩漫步的微笑\n\n种下了 一朵朵\n\n青春璀璨的年少\n\n恋人怀中樱花草\n\n听见胸膛心在跳\n\n偷偷的 在思念\n\n那是我们相爱的味道",
+    "detail_singer_names": [
+      "Sweety"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/8CCKC1D35308/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "偏爱",
+    "singer_name": "张芸京",
+    "song_url": "https://www.kugou.com/mixsong/j4ef36b.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20221125/20221125063514484979.jpg",
+    "lyrics": "偏爱 - 张芸京 (Jing chang)\n\n词：葛大为\n\n曲：陈伟\n\n编曲：陈伟\n\n把昨天都作废现在你在我眼前\n\n我想爱请给我机会\n\n如果我错了也承担\n\n认定你就是答案\n\n我不怕谁嘲笑我极端\n\n相信自己的直觉\n\n顽固的人不喊累\n\n爱上你我不撤退\n\n我说过我不闪躲我非要这么做\n\n讲不听也偏要爱\n\n更努力爱让你明白\n\n没有别条路能走\n\n你决定要不要陪我\n\n讲不听偏爱靠我感觉爱\n\n等你的依赖对你偏爱\n\n痛也很愉快\n\n把昨天都作废现在你在我眼前\n\n我想爱请给我机会\n\n如果我错了也承担\n\n认定你就是答案\n\n我不怕谁嘲笑我极端\n\n相信自己的直觉\n\n顽固的人不喊累\n\n爱上你我不撤退\n\n我说过我不闪躲我非要这么做\n\n讲不听也偏要爱\n\n更努力爱让你明白\n\n没有别条路能走\n\n你决定要不要陪我\n\n讲不听偏爱靠我感觉爱\n\n等你的依赖\n\n不后悔有把握\n\n我不闪躲我非要这么做\n\n讲不听也偏要爱\n\n更努力爱让你明白\n\n没有别条路能走\n\n你决定要不要陪我\n\n讲不听偏爱靠我感觉爱\n\n等你的依赖对你偏爱\n\n痛也很愉快",
+    "detail_singer_names": [
+      "张芸京"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/6L6KC223B65C/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "梦的翅膀受了伤",
+    "singer_name": "蒋雪儿Snow.J",
+    "song_url": "https://www.kugou.com/mixsong/vu0mq3c.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20250207/20250207161103984905.jpg",
+    "lyrics": "蒋雪儿 - 梦的翅膀受了伤\n\n作词：蒋雪儿\n\n作曲：蒋雪儿\n\n隐隐坠下季节的落叶\n\n阵阵秋风吹得好凄凉\n\n我的忧伤飘散在远方\n\n没有你我感觉好孤单\n\n思念已经化成了眼泪\n\n一滴一滴刺痛我的心\n\n梦的翅膀已经受了伤\n\n我飞不到有你的地方\n\n每次想你我都会心痛\n\n我的思念转过寂静的天空\n\n我的记忆里有你的痕迹\n\n我的爱在寂寞世界里\n\n天空飘过流浪的白云\n\n就像我们已经破碎的爱情\n\n爱得太累心已憔悴\n\n让风吹干受伤的眼泪\n\n思念已经化成了眼泪\n\n一滴一滴刺痛我的心\n\n梦的翅膀已经受了伤\n\n我飞不到有你的地方\n\n每次想你我都会心痛\n\n我的思念转过寂静的天空\n\n我的记忆里有你的痕迹\n\n我的爱在寂寞世界里\n\n天空飘过流浪的白云\n\n就像我们已经破碎的爱情\n\n爱得太累心已憔悴\n\n让风吹干受伤的眼泪\n\n让风吹干受伤的眼泪\n\n让风吹干受伤的眼泪",
+    "detail_singer_names": [
+      "蒋雪儿Snow.J"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/2J4NKF96BA509/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "踏马寻花向自由 (雷鬼版)",
+    "singer_name": "超哥",
+    "song_url": "https://www.kugou.com/mixsong/ezn7428e.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260610/20260610133425971953.jpg",
+    "lyrics": "踏马寻花向自由(雷鬼版)-超哥\n\n作词: 疯狂的羊\n\n作曲: 郭仔\n\n编曲: 一饼\n\n混音: 焦绍宇\n\n制作人: 王泽阳\n\n监制: 王泽阳\n\n视频推广: 郭杰/曾婉晴\n\n推广策划: 李寒\n\n营销推广: 凯茜/楚来@沐风有声\n\n出品人: 露露\n\n出品方: 音为有你&潮汐乐海\n\n特别鸣谢: 佳语娱乐\n\n【本音乐作品已获得正版授权】\n\n【未经著作权人许可不得翻唱翻录或使用】\n\n我自有节奏\n\n天高任我游\n\n我要逃离世俗的烦忧\n\n命运的岔路口\n\n到底往哪走\n\n随着微风四处去漂流\n\n想喝李白的酒\n\n醉倒那忧愁\n\n想与杜甫畅聊人生自由\n\n随云朵去漫游\n\n跟鸟儿招招手\n\n举杯邀明月叫三两好友\n\n就别管那么多踏马肆意挥霍\n\n岁月不过是一场蹉跎\n\n不必计较太多世俗的对与错\n\n去看向阳花开满那山坡\n\n去远方摘一朵叫自由的花朵\n\n纵马高歌肆意潇洒的活\n\n燃篝火哼着歌找月儿陪着我\n\n抛开世俗去找回那自我\n\n想喝李白的酒\n\n醉倒那忧愁\n\n想与杜甫畅聊人生自由\n\n随云朵去漫游\n\n跟鸟儿招招手\n\n举杯邀明月叫三两好友\n\n就别管那么多踏马肆意挥霍\n\n岁月不过是一场蹉跎\n\n不必计较太多世俗的对与错\n\n去看向阳花开满那山坡\n\n去远方摘一朵叫自由的花朵\n\n纵马高歌肆意潇洒的活\n\n燃篝火哼着歌找月儿陪着我\n\n抛开世俗去找回那自我",
+    "detail_singer_names": [
+      "超哥"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/HS1QCKDF49B050/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "我好想你 (苏打绿版)",
+    "singer_name": "苏打绿",
+    "song_url": "https://www.kugou.com/mixsong/12f2s6b2.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20241015/20241015172611551162.jpg",
+    "lyrics": "我好想你 (苏打绿版) - 苏打绿\n\n词：吴青峰\n\n曲：吴青峰\n\n编曲：苏打绿\n\n制作人：苏打绿/徐千秀\n\n开了灯 眼前的模样\n\n偌大的房 寂寞的床\n\n关了灯 全都一个样\n\n心里的伤 无法分享\n\n生命 随年月流去 随白发老去\n\n随着你离去 快乐渺无音讯\n\n随往事淡去 随梦境睡去\n\n随麻痹的心逐渐远去\n\n我好想你 好想你\n\n却不露痕迹\n\n我还踮着脚思念\n\n我还任记忆盘旋\n\n我还闭着眼流泪\n\n我还装作无所谓\n\n我好想你 好想你\n\n却欺骗自己\n\n开了灯 眼前的模样\n\n偌大的房 寂寞的床\n\n关了灯 全都一个样\n\n心里的伤 无法分享\n\n生命 随年月流去 随白发老去\n\n随着你离去 快乐渺无音讯\n\n随往事淡去 随梦境睡去\n\n随麻痹的心逐渐远去\n\n我好想你 好想你\n\n却不露痕迹\n\n我还踮着脚思念\n\n我还任记忆盘旋\n\n我还闭着眼流泪\n\n我还装作无所谓\n\n我好想你 好想你\n\n却欺骗自己\n\n我好想你 好想你\n\n就当作秘密\n\n我好想你\n\n好想你\n\n就深藏在\n\n心",
+    "detail_singer_names": [
+      "苏打绿"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/8BPKEE7EA21F/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "盛夏的果实",
+    "singer_name": "莫文蔚",
+    "song_url": "https://www.kugou.com/mixsong/j68hj06.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20250221/20250221180820211739.jpg",
+    "lyrics": "莫文蔚 - 盛夏的果实\n\n作词：李焯雄\n\n作曲：Meyna Co\n\n也许放弃才能靠近你\n\n不再见你你才会把我记起\n\n时间累积这盛夏的果实\n\n回忆里寂寞的香气\n\n我要试着离开你 不要再想你\n\n虽然这并不是我本意\n\n你曾说过 会永远爱我\n\n也许承诺 不过因为没把握\n\n别用沉默 再去掩饰什么\n\n当结果是那么赤裸裸\n\n以为你会说什么 才会离开我\n\n你只是转过头 不看我\n\n不要刻意说 你还爱我\n\n当看尽潮起潮落 只要你记得我\n\n你曾说过 会永远爱我\n\n也许承诺 不过证明没把握\n\n不用难过 不用掩饰什么\n\n当结果是那么赤裸裸\n\n其实不必说什么 才能离开我\n\n起码那些经过 属于我\n\n也许放弃 才能靠近你\n\n不再见你 你才会把我记起\n\n时间累积 这盛夏的果实\n\n回忆里爱情的香气\n\n我以为不露痕迹 思念却满溢\n\n或许这代表了我的心\n\n不要刻意说 你还爱我\n\n当看尽潮起潮落 只要你记得我\n\n如果你会梦见我 请你再抱紧我",
+    "detail_singer_names": [
+      "莫文蔚"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/5DAK1037FBC1/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "雨过后的风景",
+    "singer_name": "Dizzy Dizzo (蔡诗芸)",
+    "song_url": "https://www.kugou.com/mixsong/j5ete87.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260126/20260126211840542004.jpg",
+    "lyrics": "雨过后的风景 - Dizzy Dizzo (蔡诗芸)\n\n词：崔惟楷/甘世佳\n\n曲：Dizzy Dizzo (蔡诗芸)\n\nOP：Phatt Choy Productions Limited\n\nSP：五十环音乐 Straight50 Music\n\n今年的雨季像你的脾气\n\n在云层的距离比你更靠近\n\n关于爱情我已失去力气\n\n某年某月某个星期几\n\n某时某地你为我淋雨\n\n关于你的一切还挥之不去\n\n你给的结局不留情\n\n这悲伤的雨不肯停\n\n恨你恨着你 当你带来了分离\n\n叫我怎能不淋雨\n\n爱你还爱你 当你带走了回忆\n\n我却还学不会云淡风轻\n\n满城的风雨 模糊你离开的背影\n\n泪淋湿我的心 带来雨过后的风景\n\n雨中的城市世界都静止\n\n思念不见天日却拼命掩饰\n\n因为舍不得你爱恨交织\n\n云和阳光不过一公尺\n\n热恋和分手不过一阵子\n\n心浓淡爱深浅总不懂合适\n\n你给的结局不留情\n\n这悲伤的雨不肯停\n\n恨你恨着你 当你带来了分离\n\n叫我怎能不淋雨\n\n爱你还爱你 当你带走了回忆\n\n我却还学不会云淡风轻\n\n满城的风雨 模糊你离开的背影\n\n泪淋湿我的心 带来雨过后的风景\n\n雨过天晴 雨过后不再想你\n\n雨过天晴\n\n雨过天晴 雨过后不再有你\n\n雨过天晴\n\n想你想着你 听昙花落的声音\n\n我恨自己不争气\n\n为你只为你 常常埋葬了回忆\n\n和所有她们与你的消息\n\n满城的风雨 模糊你离开的背影\n\n泪淋湿我的心 带来雨过后的风景\n\n隔着盛大舞台 等待下一季的剧情",
+    "detail_singer_names": [
+      "Dizzy Dizzo (蔡诗芸)"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/NGLNKD8DF947D/"
+    ],
+    "status": "success"
+  },
+  {
+    "song_name": "岁月如笔写春秋",
+    "singer_name": "河南三妹5233",
+    "song_url": "https://www.kugou.com/mixsong/em0gu517.html",
+    "cover_url": "https://imgessl.kugou.com/stdmusic/480/20260528/20260528212904938023.jpg",
+    "lyrics": "岁月如笔写春秋\n\n一生知己最难求\n\n相逢本是百年修\n\n缘聚今生不可丢\n\n时光似酒酿温柔\n\n心事诉与明月收\n\n若问情根深几许\n\n朝朝暮暮共白头\n\n我珍惜一路 真心的相逢\n\n感恩命运的温柔\n\n愿余生常相伴不负这份宿命\n\n我眷恋时光 沉淀的安宁\n\n憧憬偕老的约定\n\n若有来世重逢 再续未了情\n\n岁月如笔写春秋\n\n一生知己最难求\n\n相逢本是百年修\n\n缘聚今生不可丢\n\n时光似酒酿温柔\n\n心事诉与明月收\n\n若问情根深几许\n\n朝朝暮暮共白头\n\n我珍惜一路 真心的相逢\n\n感恩命运的温柔\n\n愿余生常相伴不负这份宿命\n\n我眷恋时光 沉淀的安宁\n\n憧憬偕老的约定\n\n若有来世重逢 再续未了情\n\n我珍惜一路 真心的相逢\n\n感恩命运的温柔\n\n愿余生常相伴不负这份宿命\n\n我眷恋时光 沉淀的安宁\n\n憧憬偕老的约定\n\n若有来世重逢 再续未了情",
+    "detail_singer_names": [
+      "河南三妹5233"
+    ],
+    "singer_urls": [
+      "https://www.kugou.com/singer/info/H2DJ1K5B8CB019/"
+    ],
+    "status": "success"
   }
 ]
