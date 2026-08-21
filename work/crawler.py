@@ -1,0 +1,72 @@
+from pathlib import Path
+import requests
+from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
+
+#需要的信息总结（暂时是榜单1）后面要遍历榜单
+SONG_LIST_URL = ("https://www.kugou.com/yy/rank/home/1-8888.html?from=rank")
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
+AUTH_PATH = Path(".auth/kugou_state.json")
+HEADERS = {"User-Agent": USER_AGENT}
+
+
+def getrank_songs(rank_url): #复制的crawler.ipynb 在那里有原文档可以复制
+    response = requests.get(rank_url,headers=HEADERS,timeout=10)
+    html = response.text
+    soup = BeautifulSoup(html, "html.parser")
+    song_tags = soup.select(".pc_temp_songlist li")
+    songs = []
+    for song_tag in song_tags:
+        link_tag = song_tag.select_one("a.pc_temp_songname") #找到有pc_temp_songname的a
+        full_title = song_tag.get("title") #select 找文字，get 找属性
+        singer_name, song_name = full_title.split(" - ", 1) #title格式：万海东 - 山风山风等等我
+        song_url = link_tag.get("href")
+        song = {"song_name": song_name,"singer_name": singer_name,"song_url": song_url}
+        songs.append(song)
+    return songs
+
+
+    
+def getsong_detail(page, song):   #复制的crawler.ipynb 在那里有原文档可以复制
+    page.goto(song["song_url"],wait_until="domcontentloaded",timeout=30000)
+    page.wait_for_function(
+        """
+        () => {
+            const element =
+                document.querySelector(".songWordContent");
+
+            return element &&
+                   element.innerText.trim().length > 0;
+        }
+        """,
+        timeout=15000
+    )
+    cover_url = page.locator(".albumImg img").get_attribute("src")
+    lyrics = page.locator(".songWordContent").inner_text().strip()
+    singer_tag = page.locator(".songDetail .singerName a")
+    singer_url = singer_tag.get_attribute("href")
+    song["cover_url"] = cover_url
+    song["lyrics"] = lyrics
+    song["singer_url"] = singer_url
+    return song
+
+
+def playwrit():  #复制的crawler.ipynb 在那里有原文档可以复制
+    songs = getrank_songs(SONG_LIST_URL)
+    with sync_playwright() as playwright: 
+        browser = playwright.chromium.launch(headless=True)
+        context = browser.new_context(user_agent=USER_AGENT , storage_state=str(AUTH_PATH))
+        page = context.new_page()
+        firstsong = getsong_detail(page, songs[1])
+        browser.close()
+    return firstsong
+
+song = playwrit()
+#testing
+print(song["song_name"])
+print(song["singer_name"])
+print(song["song_url"])
+print(song["cover_url"])
+print(song["singer_url"])
+print("歌词:")
+print(song["lyrics"])
