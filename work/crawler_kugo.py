@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 import json
 import re
+import random
+import time
 
 #需要的信息总结（暂时是榜单1）后面要遍历榜单
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
@@ -32,6 +34,8 @@ def getrank_songs(rank_url): #复制的crawler.ipynb 在那里有原文档可以
         song_url = link_tag.get("href")
         song = {"song_name": song_name,"singer_name": singer_name,"song_url": song_url}
         songs.append(song)
+        delay = random.uniform(0.5, 1)
+        time.sleep(delay)
     return songs
 
 
@@ -48,7 +52,7 @@ def getsong_detail(page, song):   #复制的crawler.ipynb 在那里有原文档�
                    element.innerText.trim().length > 0;
         }
         """,
-        timeout=15000
+        timeout=30000
     )
     cover_url = page.locator(".albumImg img").get_attribute("src")
     rawlyrics = page.locator(".songWordContent").inner_text().strip()
@@ -74,16 +78,24 @@ def savesong(songs):
     with DATA_PATH.open("w",encoding="utf-8") as savefile:
         json.dump(songs,savefile,ensure_ascii=False,indent=2)
 
+
+def show_failed_response(response):
+    if response.status >= 400:
+        print("请求异常：",response.status,response.url)
+
+        
 def playwrit():  #复制的crawler.ipynb 在那里有原文档可以复制
     songs = []
-    for url in create_urllist(1,3):
+    for url in create_urllist(1,1):
         songs.extend(getrank_songs(url))
-
     detail_songs = []
+    consecutive_failures = 0
+    
     with sync_playwright() as playwright: 
         browser = playwright.chromium.launch(headless=True)
         context = browser.new_context(user_agent=USER_AGENT ,storage_state=str(AUTH_PATH))
         page = context.new_page()
+        page.on("response",show_failed_response)
 
         for idx, song in enumerate(songs, start = 1):
             print(f"{idx}:{song['song_name']}")
@@ -92,12 +104,16 @@ def playwrit():  #复制的crawler.ipynb 在那里有原文档可以复制
                 detail_song["status"] = "success"
                 detail_songs.append(detail_song)
                 print("good")
+                consecutive_failures = 0
+                savesong(detail_songs)
             except Exception as error:
-                song["status"] = "failed"
-                song["error"] = str(error)
-                detail_songs.append(song)
                 print(error)
-            savesong(detail_songs)
+                consecutive_failures += 1
+            if consecutive_failures >= 3:
+                print("连续3首没有成功，停止")
+                break
+            delay = random.uniform(3, 4)
+            time.sleep(delay)
         browser.close()
     return detail_songs
 

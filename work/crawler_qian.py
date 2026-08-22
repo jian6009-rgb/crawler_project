@@ -16,7 +16,7 @@ DATA_PATH = Path("data/qiansongs.json")
 def create_urllist(head, tail):
     url_list = []
     for page_num in range(head, tail + 1):
-        url = ("https://music.taihe.com/search?word=爱"f"&pageNo={page_num}")
+        url = ("https://music.taihe.com/search?word=大张伟"f"&pageNo={page_num}")
         url_list.append(url)
     return url_list
     
@@ -95,7 +95,18 @@ def savesong(songs):
 def playwrit():
     songs = []
     for url in create_urllist(1,2):
-        songs.extend(getrank_songs(url))
+        for attempt in range(1, 3):
+            try:
+                songs.extend(getrank_songs(url))
+                break
+
+            except Exception as error:
+                print(attempt,":",error)
+                time.sleep(5)
+
+        delay = random.uniform(2, 3)
+        time.sleep(delay)
+        
 
     
     if DATA_PATH.exists():#断点续爬
