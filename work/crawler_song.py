@@ -7,7 +7,7 @@ import re
 import random
 import time
 
-
+#新增一些注释：由于Kugou一直有一些防止爬虫的东西，因此改用qianqian音乐，这一个代码是几乎复制crawler_kugo.py，可在那里找到原代码
 SONG_LIST_URL = "https://music.taihe.com/search?word=爱"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
 HEADERS = {"User-Agent": USER_AGENT}
@@ -16,7 +16,7 @@ DATA_PATH = Path("data/qiansongs.json")
 def create_urllist(head, tail):
     url_list = []
     for page_num in range(head, tail + 1):
-        url = ("https://music.taihe.com/search?word=大张伟"f"&pageNo={page_num}")
+        url = ("https://music.91q.com/artist/A10081787")
         url_list.append(url)
     return url_list
     
@@ -31,7 +31,8 @@ def getrank_songs(rank_url):
     for song_tag in song_tags:
         song_name = song_tag.get_text(strip=True)
         song_url = song_tag.get("href")
-        song_url = urljoin(rank_url,song_url)
+        song_url = urljoin(rank_url,song_url) 
+        #千千很喜欢用相对链接，所以要用urljoin
 
         song = {"song_name": song_name,"song_url": song_url}
         songs.append(song)
@@ -42,7 +43,8 @@ def getsong_detail(song):
     response = requests.get(song["song_url"],headers=HEADERS,timeout=15)
     response.raise_for_status()
     html = response.text
-    lyric_match = re.search(r'lyric:"([^"]+)"',html)
+    lyric_match = re.search(r'lyric:"([^"]+)"',html) 
+    #千千很喜欢用txt来表示歌词
 
     if lyric_match is None:
         raise ValueError("没有找到歌词URL")
@@ -55,10 +57,11 @@ def getsong_detail(song):
     lyric_response.encoding = "utf-8"
     rawlyrics = lyric_response.text.strip()
     lyrics = re.sub(r"\[\d{1,2}:\d{2}(?:\.\d+)?\]","",rawlyrics).strip()
-    if len(lyrics)<20:
+    if len(lyrics)<20: 
+        #千千有些歌词会写：暂无歌词，所以要判断歌词长度
         raise ValueError("没有找到歌词URL")
 
-    cover_match = re.search(r'pageData:\{artist:\[.*?\],cpId:[^,]+,pic:"([^"]+)"',html,flags=re.DOTALL)
+    cover_match = re.search(r'pageData:\{artist:\[.*?\],cpId:[^,]+,pic:"([^"]+)"',html,flags=re.DOTALL #去掉时间
 
     if cover_match is not None:
         cover_url = cover_match.group(1).replace(r"\u002F","/")
@@ -87,15 +90,14 @@ def getsong_detail(song):
 
 
 def savesong(songs):
-    DATA_PATH.parent.mkdir(parents=True,exist_ok=True)
     with DATA_PATH.open("w",encoding="utf-8") as savefile:
         json.dump(songs,savefile,ensure_ascii=False,indent=2)
 
 
 def playwrit():
     songs = []
-    for url in create_urllist(1,2):
-        for attempt in range(1, 3):
+    for url in create_urllist(1,1): #手动调整create_urllist(x,y)来决定爬哪几页，最主要怕一次性爬所有会崩溃（kugou带来的阴影）
+        for attempt in range(1, 3): #有时候qianqian输入网站会有不知名错误，多试几遍就好了
             try:
                 songs.extend(getrank_songs(url))
                 break
@@ -126,7 +128,7 @@ def playwrit():
     consecutive_failures = 0
 
     
-    for idx, song in enumerate(songs,start=1):
+    for idx, song in enumerate(songs,start=1): #写consecutive_failures一开始是因为我不会怎么在代码出错时关terminal，不过现在会了但觉得这个功能有点用就没有删
         print(f"{idx}:{song['song_name']}")
 
         try:
