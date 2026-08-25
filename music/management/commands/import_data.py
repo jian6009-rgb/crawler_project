@@ -36,18 +36,19 @@ class Command(BaseCommand):
         for song_data in songs_data:
             song_url = song_data.get("song_url")
 
-            song, _ = Song.objects.update_or_create(
+            song, state = Song.objects.update_or_create(
                 original_url=song_url,
                 defaults={
                     "name": song_data.get("song_name", ""),
                     "lyrics": song_data.get("lyrics", ""),
-                    "cover_url": song_data.get("cover_url") or ""
+                    "cover_url": song_data.get("cover_url") or "",
+                    "singer_name": song_data.get("singer_name")
                 }
             )
 
             song_objects[song_url] = song
 
-        # 根据artists.json建立歌曲与歌手的关系
+        """ 
         for artist_data in artists_data:
             artist_url = artist_data.get("artist_url")
             artist = artist_objects.get(artist_url)
@@ -59,5 +60,20 @@ class Command(BaseCommand):
 
                 if song is not None:
                     song.artists.add(artist)
+        """
+        #这里不用artist.json导入是因为当初导入artist时舍弃了没有简介的歌手，不够全。
+
+        # 根据songs.json建立歌曲与歌手的关系
+        for song_data in songs_data:
+            song_url = song_data.get("song_url")
+            song = song_objects.get(song_url)
+            
+            singer_urls = song_data.get("singer_urls", [])
+            for singer_url in singer_urls:
+                artist = artist_objects.get(singer_url)
+
+                if artist is not None:
+                    song.artists.add(artist)
+            
 
         print("ok")
