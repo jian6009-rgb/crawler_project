@@ -5,7 +5,7 @@
     <title>歌曲列表</title>
 </head>
 <body>
-    <h1>歌曲列表</h1>
+    <h1>歌曲列表页</h1>
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); margin: 0 auto;">
         {%for song in songs%}
         <div style="display: flex;align-items: center; gap: 20px; margin:30px;" >
@@ -21,6 +21,22 @@
         </div>
         {% endfor %}
     </div>
-    
+
+
+    <div style="font-size: 16px; display: block; margin:5px; font-weight: bold;text-align: center;">
+        {%if songs.has_previous %}
+        <a href = "?pageNo={{songs.previous_page_number}}">
+            上一页：{{ songs.previous_page_number }}
+        </a>
+        {% endif %}
+        <span>
+                ( {{songs.number}} / {{songs.paginator.num_pages}} 页 )
+        </span>
+        {%if songs.has_next %}
+        <a href = "?pageNo={{songs.next_page_number}}">
+            下一页：{{ songs.next_page_number }}
+        </a>
+        {% endif %}
+    </div>
 </body>
 </html>
