@@ -9,13 +9,28 @@
     <a href="{% url 'song_list' %}">
         返回歌曲列表
     </a>
+    <br>
+    <a href="{% url 'artist_list' %}">
+        返回歌手列表
+    </a>
         <div style = " display: flex; flex-direction: column; gap: 20px; margin:30px; align-items: center; text-align: center;" >
             <img style="border: 3px solid #000000 ; border-radius: 10px; box-shadow: 0 4px 10px #cccccc; object-fit: cover;"
             src="{{ song.cover_url }}"
             width="300" height="300">
             <div>
                 <h2 style="font-size: 24px; display: block; margin:20px; font-weight: bold;">{{ song.name }}</h2>
-                <a style="font-size: 16px;  margin:20px;">{{ song.singer_name }}</a><br>
+                
+                <div style="font-size: 16px;  margin:20px;">
+                    {% for artist in song.artists.all %}
+                    <a href="{% url 'artist_detail' artist.id %}">
+                        {{ artist.name }}
+                    </a>
+                    
+                    {% empty %} 
+                        {{ song.singer_name }} 
+                    {% endfor %}
+                </div><br>
+                
                 <a style="font-size: 16px; margin:20px;" href="{{ song.original_url }}" target="_blank">查看歌曲原始网站</a>
             </div>
             <h2>歌词</h2>

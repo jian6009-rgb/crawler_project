@@ -22,3 +22,8 @@ def artist_list(request):
     artists = paginator.get_page(page_number)
 
     return render(request, "music/artist_list.html", {"artists": artists})
+
+def artist_detail(request, artist_id):
+    artist = get_object_or_404(Artist , id=artist_id)
+
+    return render(request, "music/artist_detail.html", {"artist": artist})
