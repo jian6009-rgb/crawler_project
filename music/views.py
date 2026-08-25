@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Song
 
 def song_list(request):
@@ -9,3 +9,8 @@ def song_list(request):
     songs = paginator.get_page(page_number)
 
     return render(request, "music/song_list.html", {"songs": songs})
+
+def song_detail(request, song_id):
+    song = get_object_or_404(Song , id=song_id)
+
+    return render(request, "music/song_detail.html", {"song": song})
