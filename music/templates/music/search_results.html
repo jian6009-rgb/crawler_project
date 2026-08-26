@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索页</title>
+</head>
+<body>
+    <h1>搜索页</h1>
+    <a href="{% url 'song_list' %}">
+        返回歌曲列表
+    </a>
+    <br>
+    <a href="{% url 'artist_list' %}">
+        返回歌手列表
+    </a>
+    <br>
+    <button type="button" onclick="history.back()">
+        返回搜索结果
+    </button>
+    <p style="text-align: center;">
+    关键词：{{ keyword }},一共 {{ result_num }} 条结果,搜索耗时：{{ search_time }} 秒
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); margin: 0 auto;">
+        {% if search_type == "song"%}
+        {% for song in results %}
+        <div style="display: flex;align-items: center; gap: 20px; margin:30px;" >
+            <a href = "{% url 'song_detail' song.id %}">
+                <img style="border: 3px solid #000000 ; border-radius: 10px; box-shadow: 0 4px 10px #cccccc; object-fit: cover;"
+                src="{{ song.cover_url }}"
+                width="150" height="150">
+            </a>
+            <div>
+                <a style="font-size: 24px; display: block; margin:20px; font-weight: bold;" href = "{% url 'song_detail' song.id %}">{{ song.name }}</a>
+                <a style="font-size: 16px;  margin:20px;">{{ song.singer_name }}</a>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        {%for artist in results%}
+        <div style="display: flex;align-items: center; gap: 20px; margin:30px; flex-direction: column" >
+            <a href = "{% url 'artist_detail' artist.id %}">
+                <img style="border: 3px solid #000000 ; border-radius: 10px; box-shadow: 0 4px 10px #cccccc; object-fit: cover;"
+                src="{{ artist.image_url|default:'https://placehold.co/300x300?text=No+Image' }}"
+                width="150" height="150">
+            </a>
+            <div>
+                <a style="font-size: 24px; display: block; margin:20px; font-weight: bold;"  href = "{% url 'artist_detail' artist.id %}">{{ artist.name }}</a>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div style="display: flex; font-size: 16px; margin:30px 0; font-weight: bold;text-align: center; gap:20px;
+        align-items: center; justify-content: center;">
+
+        <a href = "?keyword={{ keyword|urlencode }}&search_type={{ search_type }}&pageNo=1">首页</a>
+        
+        {%if results.has_previous %}
+        <a href = "?keyword={{ keyword|urlencode }}&search_type={{ search_type }}&pageNo={{results.previous_page_number}}">
+            上一页
+        </a>
+        {% endif %}
+        {% for page in allpages %}
+            {% if page == results.number %}
+                <strong style = "margin:5px;">
+                    {{page}}
+                </strong>
+            {% else %}
+                <a style = "margin:5px;" href = "?keyword={{ keyword|urlencode }}&search_type={{ search_type }}&pageNo={{ page }}">
+                    {{page}}
+                </a>
+            {% endif %}
+        {% endfor %}
+        
+        {%if results.has_next %}
+        <a href = "?keyword={{ keyword|urlencode }}&search_type={{ search_type }}&pageNo={{results.next_page_number}}">
+            下一页
+        </a>
+        {% endif %}
+
+        <a href = "?keyword={{ keyword|urlencode }}&search_type={{ search_type }}&pageNo={{results.paginator.num_pages}}">尾页</a>
+        <form method="get" style="display: inline; margin-left: 20px;">
+        <input type="number" name="pageNo" min="1" max="{{ results.paginator.num_pages }}"
+            required style="width: 60px;">
+        <input type="hidden" name="keyword" value="{{ keyword }}">
+        <input type="hidden" name="search_type" value="{{ search_type }}">
+        <button type="submit">跳转</button>
+        </form>
+        <span>
+            ( {{results.number}} / {{results.paginator.num_pages}} 页 )
+        </span>
+    </div>
+
+    
+</body>
+</html>

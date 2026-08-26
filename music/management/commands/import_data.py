@@ -3,6 +3,12 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from music.models import Artist, Song
 
+def normalurl(url):
+    return url.replace(
+        "https://music.91q.com",
+        "https://music.taihe.com"
+    )
+
 
 class Command(BaseCommand):
     help = "将歌曲和歌手的数据导入py数据库"
@@ -17,7 +23,7 @@ class Command(BaseCommand):
         artist_objects = {}
         
         for artist_data in artists_data:
-            artist_url = artist_data.get("artist_url")
+            artist_url = normalurl(artist_data.get("artist_url"))
 
             artist, state = Artist.objects.update_or_create(
                 original_url=artist_url,
@@ -80,6 +86,7 @@ class Command(BaseCommand):
                 singers_url
             ):
                 singer_name = singer_name.strip()
+                singer_url = normalurl(singer_url)
                 if not singer_name or not singer_url:
                     continue
                     

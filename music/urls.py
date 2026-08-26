@@ -5,5 +5,6 @@ urlpatterns = [
     path("", views.song_list, name="song_list"),
     path("song/<int:song_id>/", views.song_detail, name="song_detail"),
     path("artist/", views.artist_list, name="artist_list"),
-    path("artist/<int:artist_id>/", views.artist_detail, name="artist_detail")
+    path("artist/<int:artist_id>/", views.artist_detail, name="artist_detail"),
+    path("search/",views.search_results,name="search_results"),
 ]

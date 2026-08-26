@@ -6,6 +6,18 @@
 </head>
 <body>
     <h1>歌手列表页</h1>
+    <form method="get" style="text-align: center; margin: 20px;" action="{% url 'search_results' %}">
+        <input type="text" name="keyword" maxlength="20" required placeholder="请输入关键词">
+        <label>
+            <input type="radio" name="search_type" value="song" checked>
+            搜索歌曲
+        </label>
+        <label>
+            <input type="radio" name="search_type" value="artist">
+            搜索歌手
+        </label>
+        <button type="submit">搜索</button>
+    </form>
     <a href="{% url 'song_list' %}">
         打开歌曲列表
     </a>
