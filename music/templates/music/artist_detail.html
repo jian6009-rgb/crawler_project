@@ -1,32 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>{{ artist.name }}</title>
+    <link rel="stylesheet" href="{% static 'music/style.css' %}">
 </head>
 <body>
-    <h1>歌手详情页</h1>
-    <a href="{% url 'song_list' %}">
-        返回歌曲列表
-    </a>
-    <br>
-    <a href="{% url 'artist_list' %}">
-        返回歌手列表
-    </a>
-    <br>
+    <div class = "up">
+        <div></div>
+        <h1>{{artist.name }}</h1>
+        <div style="display: flex;justify-content: flex-end;align-items: center;gap: 20px;">
+            <div style="display: flex; gap: 12px;">
+                <a style="color: #F4D7A1;"href="{% url 'song_list' %}">歌曲列表</a>
+                <a style="color: #F4D7A1;" href="{% url 'artist_list' %}">歌手列表</a>
+            </div>
+            <form method="get" style="text-align: center;display: flex; gap: 8px;" action="{% url 'search_results' %}">
+                <input type="text" name="keyword" maxlength="20" required placeholder="请输入关键词">
+                <label>
+                    <input type="radio" name="search_type" value="song" checked>歌曲
+                </label>
+                <label>
+                    <input type="radio" name="search_type" value="artist">歌手
+                </label>
+            <button type="submit">搜索</button>
+            </form>
+        </div>
+    </div>
     <button type="button" onclick="history.back()">
         返回搜索结果
     </button>
-        <div style = " display: flex; gap: 20px; margin:30px; align-items: center; text-align: center; justify-content: center;" >
+        <div class = " artistdetail" >
             <div>
-            <img style="border: 3px solid #000000 ; border-radius: 10px; box-shadow: 0 4px 10px #cccccc; object-fit: cover;"
+            <img class = "image"
             src="{{ artist.image_url|default:'https://placehold.co/300x300?text=No+Image' }}"
             width="300" height="300">
-            <h2>{{ artist.name }}</h2>
-            <a style="font-size: 16px; margin:20px;" href="{{ artist.original_url }}" target="_blank">查看歌手原始网站</a>
+                <h2 class = "artist-name">{{ artist.name }}</h2>
+                <a style="font-size: 16px; margin:20px;" href="{{ artist.original_url }}" target="_blank">查看歌手原始网站</a>
             </div>
             <div style = "width: 80%;max-width: 800px;height: 250px; padding: 20px;
-                box-sizing: border-box; border: 2px solid #cccccc;border-radius: 10px;overflow-y: auto;">
+                box-sizing: border-box; border: 2px solid #cccccc;border-radius: 10px;overflow-y: auto; background: #ffffff">
                 <h2>简介:</h2>
                 <p>{{ artist.intro|default:"此歌手暂无简介"|linebreaksbr }}</p>
             </div>
@@ -34,15 +47,15 @@
         <div>
             <h2>歌曲列表</h2>
             {% for song in artist.songs.all %}
-                <div style="display: flex;align-items: center; gap: 20px; margin:30px;" >
-            <a href = "{% url 'song_detail' song.id %}">
-                <img style="border: 3px solid #000000 ; border-radius: 10px; box-shadow: 0 4px 10px #cccccc; object-fit: cover;"
-                src="{{ song.cover_url }}"
-                width="150" height="150">
-            </a>
-            <div>
+                <div class = "song card" >
+                    <a href = "{% url 'song_detail' song.id %}">
+                        <img class = "image"
+                        src="{{ song.cover_url }}"
+                        width="150" height="150">
+                    </a>
+                <div>
                 <a style="font-size: 24px; display: block; margin:20px; font-weight: bold;" href = "{% url 'song_detail' song.id %}">{{ song.name }}</a>
-                <a style="font-size: 16px;  margin:20px;">{{ song.singer_name }}</a>
+                <a class = "artist-name" style="font-size: 16px;  margin:20px;">{{ song.singer_name }}</a>
             </div>
         </div>
             {% endfor %}
