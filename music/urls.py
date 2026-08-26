@@ -7,4 +7,5 @@ urlpatterns = [
     path("artist/", views.artist_list, name="artist_list"),
     path("artist/<int:artist_id>/", views.artist_detail, name="artist_detail"),
     path("search/",views.search_results,name="search_results"),
+    path("comment/delete/<int:comment_id>/",views.delete_comment,name="delete_comment"),
 ]

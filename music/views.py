@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, render
-from .models import Artist, Song
+from django.shortcuts import get_object_or_404, render,redirect
+from .models import Artist, Song, Comment
 import time
 from django.db.models import Case,Q,Value,When
 
@@ -18,7 +18,11 @@ def song_list(request):
 
 def song_detail(request, song_id):
     song = get_object_or_404(Song , id=song_id)
-
+    if request.method == "POST":
+        content = request.POST.get("content", "").strip()
+        if content:
+            Comment.objects.create(song=song,content=content)
+        return redirect("song_detail",song_id=song.id)
     return render(request, "music/song_detail.html", {"song": song})
 
 def artist_list(request):
@@ -100,5 +104,11 @@ def search_results(request):
     }
     )
     
-    
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment,id=comment_id)
+    song_id = comment.song.id
+    if request.method == "POST":
+        comment.delete()
+
+    return redirect("song_detail",song_id=song_id)
 

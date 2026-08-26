@@ -53,6 +53,36 @@
             <p>
                 {{song.lyrics|linebreaksbr}}
             </p>
+            <h2>请发表评论</h2>
+            <form method="post">
+            {% csrf_token %}
+
+            <textarea name="content" rows="4"
+                    cols="50" requiredplaceholder="请输入评论">
+            </textarea>
+
+            <br>
+            <button type="submit">提交评论</button>
+            </form>
+
+            <h2>评论列表</h2>
+
+            <div>
+            {% for comment in song.comments.all %}
+                <div style="border-bottom: 1px solid #cccccc; padding: 15px;">
+                    <p>{{ comment.content }}</p>
+                    <small>{{ comment.created_at|date:"Y-m-d H:i:s" }}</small>
+                </div>
+                <form method="post" action="{% url 'delete_comment' comment.id %}">
+                    {% csrf_token %}
+                <button type="submit">删除评论</button>
+                </form>
+            {% empty %}
+                <p>暂无评论</p>
+            {% endfor %}
+                
+            </div>
         </div>
+    
 </body>
 </html>

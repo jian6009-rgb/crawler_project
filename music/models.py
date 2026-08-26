@@ -20,3 +20,18 @@ class Song(models.Model):
     artists = models.ManyToManyField(Artist,related_name="songs")
     def __str__(self):
         return self.name
+
+class Comment(models.Model):
+    song = models.ForeignKey(
+        Song,
+        on_delete=models.CASCADE,
+        related_name="comments"
+    )
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.content
