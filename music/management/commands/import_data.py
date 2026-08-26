@@ -35,6 +35,10 @@ class Command(BaseCommand):
         # 再把歌曲加入数据库
         for song_data in songs_data:
             song_url = song_data.get("song_url")
+            singer_name = song_data.get("singer_name") or ""
+            singer_urls = song_data.get("singer_urls") or []
+            if not singer_name or not singer_urls or not song_url:
+                continue
 
             song, state = Song.objects.update_or_create(
                 original_url=song_url,
@@ -68,12 +72,26 @@ class Command(BaseCommand):
             song_url = song_data.get("song_url")
             song = song_objects.get(song_url)
             
-            singer_urls = song_data.get("singer_urls", [])
-            for singer_url in singer_urls:
-                artist = artist_objects.get(singer_url)
-
-                if artist is not None:
-                    song.artists.add(artist)
+            singer_text = song_data.get("singer_name") or ""
+            singers_name = singer_text.split("/")
+            singers_url = song_data.get("singer_urls") or []
+            for singer_name,singer_url in zip(
+                singers_name,
+                singers_url
+            ):
+                singer_name = singer_name.strip()
+                if not singer_name or not singer_url:
+                    continue
+                    
+                artist,state = Artist.objects.get_or_create(
+                    original_url = singer_url,
+                    defaults={
+                        "name": singer_name,
+                        "intro": "",
+                        "image_url": ""
+                    }
+                )
+                song.artists.add(artist)
             
 
         print("ok")

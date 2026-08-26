@@ -16,7 +16,7 @@
         <div style = " display: flex; gap: 20px; margin:30px; align-items: center; text-align: center; justify-content: center;" >
             <div>
             <img style="border: 3px solid #000000 ; border-radius: 10px; box-shadow: 0 4px 10px #cccccc; object-fit: cover;"
-            src="{{ artist.image_url }}"
+            src="{{ artist.image_url|default:'https://placehold.co/300x300?text=No+Image' }}"
             width="300" height="300">
             <h2>{{ artist.name }}</h2>
             <a style="font-size: 16px; margin:20px;" href="{{ artist.original_url }}" target="_blank">查看歌手原始网站</a>
@@ -24,7 +24,7 @@
             <div style = "width: 80%;max-width: 800px;height: 250px; padding: 20px;
                 box-sizing: border-box; border: 2px solid #cccccc;border-radius: 10px;overflow-y: auto;">
                 <h2>简介:</h2>
-                <p>{{ artist.intro|linebreaksbr }}</p>
+                <p>{{ artist.intro|default:"此歌手暂无简介"|linebreaksbr }}</p>
             </div>
         </div>
         <div>
