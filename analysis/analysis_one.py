@@ -63,7 +63,7 @@ for length_name in length_analysis.index:
 plt.bar_label(bars,labels=bar_labels,padding=2)
 plt.title("以“爱”作歌名的歌曲中长度与同名率的关系")
 plt.xlabel("歌名长度组别")
-plt.grid("同名歌名比例")
+plt.ylabel("歌名重复率")
 plt.ylim( 0,length_analysis["repeated_ratio (%)"].max() + 10)
 plt.grid( axis="both", linestyle="--", alpha=0.5 )
 plt.tight_layout()
