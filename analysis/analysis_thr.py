@@ -4,6 +4,8 @@ import json
 import re
 import jieba
 import pandas
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parent.parent
 SONG_DATA_PATH = ROOT / "data" / "songs.json"
@@ -35,7 +37,6 @@ song_word_counts = Counter()
 
 
 for idx, song in loved_song_data.iterrows():
-    song_name = str(song["song_name"]).strip()
     rawlyrics = str(song["lyrics"])
     lyrics = []
     for line in rawlyrics.splitlines():
@@ -72,7 +73,6 @@ for idx, song in loved_song_data.iterrows():
     # 统计总出现次数
     total_word_counts.update(valid_words)
     song_word_counts.update(set(valid_words))
-
 analysis_ans = []
 
 for word, word_count in total_word_counts.most_common(30):
@@ -84,10 +84,22 @@ for word, word_count in total_word_counts.most_common(30):
             "song_count": song_count,
         }
     )
-
-
 word_analysis = pandas.DataFrame(analysis_ans)
+word_analysis["song_ratio (%)"] = (word_analysis["song_count"] / 1861 * 100).round(2)
 
 
 print("歌词词频前30：")
 print(word_analysis.to_string(index=False,))
+
+plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]
+word_cloud = WordCloud(font_path=r"C:\Windows\Fonts\msyh.ttc",
+                            width=1200,
+                            height=700,
+                            max_words=30,
+                            ).generate_from_frequencies(total_word_counts)
+
+plt.figure(figsize=(12, 7))
+plt.imshow(word_cloud)
+plt.axis("off")
+plt.title("歌名含“爱”字歌曲的歌词高频词词云")
+plt.show()

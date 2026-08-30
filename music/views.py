@@ -38,7 +38,6 @@ def artist_list(request):
 
 def artist_detail(request, artist_id):
     artist = get_object_or_404(Artist , id=artist_id)
-
     return render(request, "music/artist_detail.html", {"artist": artist})
 
 def search_results(request):

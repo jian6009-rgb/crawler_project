@@ -20,10 +20,9 @@ song_data = pandas.DataFrame(songs)
 song_data["normalized_url"] = song_data["song_url"].apply(normalurl)
 cleaned_song_data = song_data.drop_duplicates(subset = "normalized_url")
 loved_song_data = cleaned_song_data[cleaned_song_data["song_name"].str.contains("爱",na=False)]
+
 grouped_song_data = loved_song_data.groupby("song_name")  #从DataFrame转换成DataFrameGroupby
 repeated_name_count = grouped_song_data.size().sort_values(ascending = False) #从DataFramegroupby转换成Series
-
-
 name_analysis = repeated_name_count.reset_index(name="record_count") # 从Series转换成DataFrame
 name_analysis["name_length"] = (name_analysis["song_name"].str.strip().str.len())
 name_analysis["repeated_state"] = (name_analysis["record_count"] > 1)

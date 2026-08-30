@@ -37,9 +37,21 @@ one_song_artist_ratio = (one_song_artist_count/total_artist_count)*100 #只有1�
 
 total_song_count = artist_song_counts.sum() #歌曲总数
 
-#排列歌手
+top10_percent_count = int(total_artist_count * 0.1)
+top20_percent_count = int(total_artist_count * 0.2)
+top10_percent_share = artist_song_counts.head(top10_percent_count).sum() / total_song_count * 100
+top20_percent_share = artist_song_counts.head(top20_percent_count).sum() / total_song_count * 100
+print("歌名含“爱”的歌曲数：",len(loved_song_data))
+print("歌手总数：",total_artist_count)
+print("只参与1首歌的歌手数：",one_song_artist_count)
+print("占比为：",f"{one_song_artist_ratio:.2f}%")
+print("前10%的歌手占比为：",f"{top10_percent_share:.2f}%")
+print("前20%的歌手占比为：",f"{top20_percent_share:.2f}%")
+
+
 sorted_artist_counts = artist_song_counts.sort_values(ascending=True)
 cumulative_pa_ratio = (sorted_artist_counts.cumsum()/ total_song_count* 100).tolist()
+
 
 cumulative_artist_ratio = []
 

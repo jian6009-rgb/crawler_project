@@ -11,17 +11,17 @@ import time
 SONG_LIST_URL = "https://music.taihe.com/search?word=爱"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
 HEADERS = {"User-Agent": USER_AGENT}
-DATA_PATH = Path("data/qiansongs.json")
+DATA_PATH = Path("data/songs.json")
 
-def create_urllist(head, tail):
+def create_urllist(head, tail):#用来一次性爬多个网站。
     url_list = []
     for page_num in range(head, tail + 1):
-        url = ("https://music.91q.com/artist/A10081787")
+        url = ("https://music.91q.com/artist/A10081787")#手动调整网站
         url_list.append(url)
     return url_list
     
 def getrank_songs(rank_url):
-    response = requests.get(rank_url,headers=HEADERS,timeout=15)
+    response = requests.get(rank_url,headers=HEADERS,timeout=15) #网站html找资料标准流程
     response.raise_for_status()
     html = response.text
     soup = BeautifulSoup(html, "html.parser")
@@ -40,28 +40,30 @@ def getrank_songs(rank_url):
 
 
 def getsong_detail(song):
-    response = requests.get(song["song_url"],headers=HEADERS,timeout=15)
+    response = requests.get(song["song_url"],headers=HEADERS,timeout=15) #网站html找资料标准流程
     response.raise_for_status()
     html = response.text
-    lyric_match = re.search(r'lyric:"([^"]+)"',html) 
-    #千千很喜欢用txt来表示歌词
-
-    if lyric_match is None:
-        raise ValueError("没有找到歌词URL")
-    lyric_url = lyric_match.group(1).replace(r"\u002F","/")
 
 
     
-    lyric_response = requests.get(lyric_url,headers=HEADERS,timeout=15)
+    lyric_match = re.search(r'lyric:"([^"]+)"',html) 
+    #在经过自己手动研究源代码后发现，千千很喜欢用txt来表示歌词，所以要这样写”
+
+    if lyric_match is None:
+        raise ValueError("没有找到歌词URL")  #丢出异常让代码后面识别
+    lyric_url = lyric_match.group(1).replace(r"\u002F","/") #千千歌词源代码歌词url有\u002F
+    lyric_response = requests.get(lyric_url,headers=HEADERS,timeout=15)#网站html找资料标准流程
     lyric_response.raise_for_status()
     lyric_response.encoding = "utf-8"
     rawlyrics = lyric_response.text.strip()
-    lyrics = re.sub(r"\[\d{1,2}:\d{2}(?:\.\d+)?\]","",rawlyrics).strip()
+    lyrics = re.sub(r"\[\d{1,2}:\d{2}(?:\.\d+)?\]","",rawlyrics).strip()#删除时间戳，kugou没有但qianqian有
     if len(lyrics)<20: 
         #千千有些歌词会写：暂无歌词，所以要判断歌词长度
         raise ValueError("没有找到歌词URL")
 
-    cover_match = re.search(r'pageData:\{artist:\[.*?\],cpId:[^,]+,pic:"([^"]+)"',html,flags=re.DOTALL #去掉时间
+
+
+    cover_match = re.search(r'pageData:\{artist:\[.*?\],cpId:[^,]+,pic:"([^"]+)"',html,flags=re.DOTALL)
 
     if cover_match is not None:
         cover_url = cover_match.group(1).replace(r"\u002F","/")
@@ -69,7 +71,8 @@ def getsong_detail(song):
         cover_url = None
 
 
-    soup = BeautifulSoup(html,"html.parser")
+
+    soup = BeautifulSoup(html,"html.parser") #歌词和封面直接藏在html代码的javascript里，不需要soup解析，但singer_tag是html的属性和文本，所以要soup
     singer_tags = soup.select('.info .artist a[href*="/artist/"]')
 
     singer_names = []
@@ -97,7 +100,7 @@ def savesong(songs):
 def playwrit():
     songs = []
     for url in create_urllist(1,1): #手动调整create_urllist(x,y)来决定爬哪几页，最主要怕一次性爬所有会崩溃（kugou带来的阴影）
-        for attempt in range(1, 3): #有时候qianqian输入网站会有不知名错误，多试几遍就好了
+        for attempt in range(1, 3): #有时候qianqian输入网站会有不知名错误，多试几遍就好了，参考网上的标准流程
             try:
                 songs.extend(getrank_songs(url))
                 break
@@ -111,7 +114,7 @@ def playwrit():
         
 
     
-    if DATA_PATH.exists():#断点续爬
+    if DATA_PATH.exists():#断点续爬，参考网上的标准流程
         with DATA_PATH.open("r", encoding="utf-8") as savefile:
             detail_songs = json.load(savefile)
     else:

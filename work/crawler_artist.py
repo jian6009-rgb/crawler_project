@@ -10,7 +10,7 @@ from playwright.sync_api import sync_playwright
 
 #新增一些注释：由于Kugou一直有一些防止爬虫的东西，因此改用qianqian音乐，crawler_song.py是几乎复制crawler_kugo.py，可在那里找到原代码,而这个是复制crawler_song.py
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
-SONG_DATA_PATH = Path("data/qiansongs.json")
+SONG_DATA_PATH = Path("data/songs.json")
 ARTIST_DATA_PATH = Path("data/artists.json")
 
 #写完这个代码后的小心思：其实这个代码能优化，如果把crawler_song.py和crawler_artist.py结合应该能让代码效率更高，更好。但是我当时心想一步一步来会更适合初学者，但结果让代码更复杂了。
@@ -43,16 +43,16 @@ def getartist_sources(): #从json遍历歌曲，提取歌手url。并把信息�
 
 def getartist_detail(page,artist_url,artist_source): #在page上打开歌手url，在里面用locator找歌手信息组成字典。如果图片简介任一没有，则跳过
     
-    page.goto(artist_url,wait_until="domcontentloaded",timeout=30000)
+    page.goto(artist_url,wait_until="domcontentloaded",timeout=30000) #page写在这里是因为page可以有很多
     page.wait_for_selector(".info-box .info h1",timeout=15000)
-    page.wait_for_timeout(2000)
+    page.wait_for_timeout(2000) #等网站自己的运行，不然image_tag会变默认图片
 
-    artist_name = page.locator(".info-box .info h1").inner_text().strip()
+    artist_name = page.locator(".info-box .info h1").inner_text().strip() #从源代码html自己慢慢找的
     if not artist_name:
         print("没有名")
         return None
 
-    image_tag = page.locator(".info-box .avatar img")
+    image_tag = page.locator(".info-box .avatar img") 
     if image_tag.count() == 0:
         print("没有图")
         return None
@@ -69,7 +69,7 @@ def getartist_detail(page,artist_url,artist_source): #在page上打开歌手url�
         return None
 
     artist_intro = intro_tag.first.inner_text().strip()
-    if len(artist_intro) < 10:
+    if len(artist_intro) < 10: #没有简介的歌手直接抛弃
         print("没有简介")
         return None
 
@@ -112,7 +112,7 @@ def playwrit(): #先getartist_sources()获取歌手名单，
         context = browser.new_context(user_agent=USER_AGENT)
         page = context.new_page()
 
-        for idx, artist_data in enumerate(artist_sources.items(),start=1):
+        for idx, artist_data in enumerate(artist_sources.items(),start=1): #给列表每个歌手做一次getartist_detail，最后保存
 
             artist_url = artist_data[0]
             artist_source = artist_data[1]
@@ -123,7 +123,7 @@ def playwrit(): #先getartist_sources()获取歌手名单，
 
                 if detail_artist is None:
                     print ("no")
-                elif detail_artist["artist_name"] in saved_artist_names:
+                elif detail_artist["artist_name"] in saved_artist_names: #不对同一个歌手重复进行
                     print ("no")
                 else:
                     detail_artists.append(detail_artist)
