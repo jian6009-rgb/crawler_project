@@ -7,72 +7,86 @@ import re
 import random
 import time
 
-#新增一些注释：由于Kugou一直有一些防止爬虫的东西，因此改用qianqian音乐，这一个代码是几乎复制crawler_kugo.py，可在那里找到原代码
+# 由于Kugou一直有一些防止爬虫的东西，因此改用qianqian音乐，
+# 这一个代码是几乎复制crawler_kugo.py，可在那里找到原代码
 SONG_LIST_URL = "https://music.taihe.com/search?word=爱"
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/141.0.0.0 Safari/537.36 "
+    "SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
+)
 HEADERS = {"User-Agent": USER_AGENT}
 DATA_PATH = Path("data/songs.json")
 
-def create_urllist(head, tail):#用来一次性爬多个网站。
+
+def create_urllist(head, tail):  # 用来一次性爬多个网站。
     url_list = []
     for page_num in range(head, tail + 1):
-        url = ("https://music.91q.com/artist/A10081787")#手动调整网站
+        url = "https://music.91q.com/artist/A10081787"  # 手动调整网站
         url_list.append(url)
     return url_list
-    
+
+
 def getrank_songs(rank_url):
-    response = requests.get(rank_url,headers=HEADERS,timeout=15) #网站html找资料标准流程
+    response = requests.get(
+        rank_url, headers=HEADERS, timeout=15
+    )  # 网站html找资料标准流程
     response.raise_for_status()
     html = response.text
     soup = BeautifulSoup(html, "html.parser")
     song_tags = soup.select('a[href*="/song/"]')
-    
+
     songs = []
     for song_tag in song_tags:
         song_name = song_tag.get_text(strip=True)
         song_url = song_tag.get("href")
-        song_url = urljoin(rank_url,song_url) 
-        #千千很喜欢用相对链接，所以要用urljoin
+        song_url = urljoin(rank_url, song_url)
+        # 千千很喜欢用相对链接，所以要用urljoin
 
-        song = {"song_name": song_name,"song_url": song_url}
+        song = {"song_name": song_name, "song_url": song_url}
         songs.append(song)
     return songs
 
 
 def getsong_detail(song):
-    response = requests.get(song["song_url"],headers=HEADERS,timeout=15) #网站html找资料标准流程
+    response = requests.get(
+        song["song_url"], headers=HEADERS, timeout=15
+    )  # 网站html找资料标准流程
     response.raise_for_status()
     html = response.text
 
-
-    
-    lyric_match = re.search(r'lyric:"([^"]+)"',html) 
-    #在经过自己手动研究源代码后发现，千千很喜欢用txt来表示歌词，所以要这样写”
+    lyric_match = re.search(r'lyric:"([^"]+)"', html)
+    # 在经过自己手动研究源代码后发现，千千很喜欢用txt来表示歌词，所以要这样写”
 
     if lyric_match is None:
-        raise ValueError("没有找到歌词URL")  #丢出异常让代码后面识别
-    lyric_url = lyric_match.group(1).replace(r"\u002F","/") #千千歌词源代码歌词url有\u002F
-    lyric_response = requests.get(lyric_url,headers=HEADERS,timeout=15)#网站html找资料标准流程
+        raise ValueError("没有找到歌词URL")  # 丢出异常让代码后面识别
+    lyric_url = lyric_match.group(1).replace(r"\u002F", "/")
+    # 千千歌词源代码歌词url有\u002F
+    lyric_response = requests.get(lyric_url, headers=HEADERS, timeout=15)
+    # 网站html找资料标准流程
     lyric_response.raise_for_status()
     lyric_response.encoding = "utf-8"
     rawlyrics = lyric_response.text.strip()
-    lyrics = re.sub(r"\[\d{1,2}:\d{2}(?:\.\d+)?\]","",rawlyrics).strip()#删除时间戳，kugou没有但qianqian有
-    if len(lyrics)<20: 
-        #千千有些歌词会写：暂无歌词，所以要判断歌词长度
+    lyrics = re.sub(
+        r"\[\d{1,2}:\d{2}(?:\.\d+)?\]", "", rawlyrics
+    ).strip()  # 删除时间戳，kugou没有但qianqian有
+    if len(lyrics) < 20:
+        # 千千有些歌词会写：暂无歌词，所以要判断歌词长度
         raise ValueError("没有找到歌词URL")
 
-
-
-    cover_match = re.search(r'pageData:\{artist:\[.*?\],cpId:[^,]+,pic:"([^"]+)"',html,flags=re.DOTALL)
+    cover_match = re.search(
+        r'pageData:\{artist:\[.*?\],cpId:[^,]+,pic:"([^"]+)"', html, flags=re.DOTALL
+    )
 
     if cover_match is not None:
-        cover_url = cover_match.group(1).replace(r"\u002F","/")
+        cover_url = cover_match.group(1).replace(r"\u002F", "/")
     else:
         cover_url = None
 
-
-
-    soup = BeautifulSoup(html,"html.parser") #歌词和封面直接藏在html代码的javascript里，不需要soup解析，但singer_tag是html的属性和文本，所以要soup
+    soup = BeautifulSoup(html, "html.parser")
+    # 歌词和封面直接藏在html代码的javascript里，
+    # 不需要soup解析，但singer_tag是html的属性和文本，所以要soup
     singer_tags = soup.select('.info .artist a[href*="/artist/"]')
 
     singer_names = []
@@ -80,7 +94,7 @@ def getsong_detail(song):
     for singer_tag in singer_tags:
         singer_name = singer_tag.get_text(strip=True)
         singer_url = singer_tag.get("href")
-        singer_url = urljoin(song["song_url"],singer_url)
+        singer_url = urljoin(song["song_url"], singer_url)
         singer_names.append(singer_name)
         singer_urls.append(singer_url)
 
@@ -93,33 +107,34 @@ def getsong_detail(song):
 
 
 def savesong(songs):
-    with DATA_PATH.open("w",encoding="utf-8") as savefile:
-        json.dump(songs,savefile,ensure_ascii=False,indent=2)
+    with DATA_PATH.open("w", encoding="utf-8") as savefile:
+        json.dump(songs, savefile, ensure_ascii=False, indent=2)
 
 
 def playwrit():
     songs = []
-    for url in create_urllist(1,1): #手动调整create_urllist(x,y)来决定爬哪几页，最主要怕一次性爬所有会崩溃（kugou带来的阴影）
-        for attempt in range(1, 3): #有时候qianqian输入网站会有不知名错误，多试几遍就好了，参考网上的标准流程
+    for url in create_urllist(1, 1):
+        # 手动调整create_urllist(x,y)来决定爬哪几页，
+        # 最主要怕一次性爬所有会崩溃（kugou带来的阴影）
+        for attempt in range(1, 3):
+            # 有时候qianqian输入网站会有不知名错误，多试几遍就好了。
             try:
                 songs.extend(getrank_songs(url))
                 break
 
             except Exception as error:
-                print(attempt,":",error)
+                print(attempt, ":", error)
                 time.sleep(5)
 
         delay = random.uniform(2, 3)
         time.sleep(delay)
-        
 
-    
-    if DATA_PATH.exists():#断点续爬，参考网上的标准流程
+    if DATA_PATH.exists():  # 断点续爬，参考网上的标准流程
         with DATA_PATH.open("r", encoding="utf-8") as savefile:
             detail_songs = json.load(savefile)
     else:
         detail_songs = []
-        
+
     saved_urls = []
     for saved_song in detail_songs:
         saved_urls.append(saved_song["song_url"])
@@ -130,8 +145,9 @@ def playwrit():
     songs = new_songs
     consecutive_failures = 0
 
-    
-    for idx, song in enumerate(songs,start=1): #写consecutive_failures一开始是因为我不会怎么在代码出错时关terminal，不过现在会了但觉得这个功能有点用就没有删
+    for idx, song in enumerate(songs, start=1):
+        # 写consecutive_failures一开始是因为我不会怎么在代码出错时关terminal，
+        # 不过现在会了但觉得这个功能有点用就没有删
         print(f"{idx}:{song['song_name']}")
 
         try:

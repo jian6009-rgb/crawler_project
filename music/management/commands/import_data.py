@@ -21,7 +21,7 @@ class Command(BaseCommand):
             artists_data = json.load(savefile)
 
         artist_objects = {}
-        
+        # 再把歌手加入数据库
         for artist_data in artists_data:
             artist_url = normalurl(artist_data.get("artist_url"))
 
@@ -97,7 +97,7 @@ class Command(BaseCommand):
                         "intro": "",
                         "image_url": ""
                     }
-                )
+                ) # 如果没有资料就创建一个空资料
                 song.artists.add(artist)
             
 
