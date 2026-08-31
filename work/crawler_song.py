@@ -23,7 +23,7 @@ DATA_PATH = Path("data/songs.json")
 def create_urllist(head, tail):  # 用来一次性爬多个网站。
     url_list = []
     for page_num in range(head, tail + 1):
-        url = "https://music.91q.com/artist/A10081787"  # 手动调整网站
+        url = f"{SONG_LIST_URL}&pageNo={page_num}"  # 手动调整网站
         url_list.append(url)
     return url_list
 
@@ -113,7 +113,7 @@ def savesong(songs):
 
 def playwrit():
     songs = []
-    for url in create_urllist(1, 1):
+    for url in create_urllist(1, 2):
         # 手动调整create_urllist(x,y)来决定爬哪几页，
         # 最主要怕一次性爬所有会崩溃（kugou带来的阴影）
         for attempt in range(1, 3):

@@ -16,6 +16,7 @@ USER_AGENT = (
     "Chrome/141.0.0.0 Safari/537.36 "
     "SLBrowser/9.0.8.7271 SLBChan/115 SLBVPV/64-bit"
 )
+
 SONG_DATA_PATH = Path("data/songs.json")
 ARTIST_DATA_PATH = Path("data/artists.json")
 
@@ -56,8 +57,8 @@ def getartist_detail(
 
     page.goto(artist_url, wait_until="domcontentloaded", timeout=30000)
     # page写在这里是因为page可以有很多
-    page.wait_for_selector(".info-box .info h1", timeout=15000)
-    page.wait_for_timeout(2000)
+    page.wait_for_selector(".info-box .info h1", timeout=30000)
+    page.wait_for_timeout(5000)
     # 等网站自己的运行，不然image_tag会变默认图片
 
     artist_name = (
@@ -72,9 +73,10 @@ def getartist_detail(
         print("没有图")
         return None
 
-    artist_image_url = image_tag.first.get_attribute(
-        "src"
-    )  # qianqian有可能会给歌手默认图片，所以要判断两次图片
+    artist_image_url = image_tag.first.get_attribute("src")
+    # qianqian有可能会给歌手默认图片，所以要判断两次图片
+    print("歌手：", artist_name)
+
     if (
         not artist_image_url
         or "user_pic" in artist_image_url
