@@ -55,10 +55,10 @@ def getartist_detail(
     page, artist_url, artist_source
 ):  # 在page上打开歌手url，在里面用locator找歌手信息组成字典。如果图片简介任一没有，则跳过
 
-    page.goto(artist_url, wait_until="domcontentloaded", timeout=30000)
+    page.goto(artist_url, wait_until="networkidle", timeout=30000)
     # page写在这里是因为page可以有很多
-    page.wait_for_selector(".info-box .info h1", timeout=30000)
-    page.wait_for_timeout(5000)
+    page.wait_for_selector(".info-box .info h1", timeout=15000)
+    page.wait_for_timeout(2000)
     # 等网站自己的运行，不然image_tag会变默认图片
 
     artist_name = (
